@@ -1,0 +1,32 @@
+# Config sections can be overridden when a 
+# user config file is present `config.usr.yml`.
+
+# Cloud environment config
+platform: aws
+
+aws:
+  region: us-east-2
+  profile: default
+
+  s3:
+    bucket: 'health-sh-test-data'
+
+  # Elastic Map Reduce cluster config
+  emr:
+    projectname: fin
+    loguri_prefix: "s3://health-sh-test-data/logs"
+    tmp_folder: "s3://health-sh-test-data/tmp/"
+    releaselabel: emr-5.29.0
+
+    cluster_tags:
+      banner: fbi
+      environment: development
+      exposure: internal
+      projectname: fin
+      workload: ETL
+
+    instance-type: m5.xlarge
+    instance-count: 3
+
+    applications:
+      - Spark

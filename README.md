@@ -10,4 +10,7 @@ data pipelines utilizing AWS
 ## EC2 Setup
 1.  Create a key pair using [Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair)
 
+To setup a new instance follow [these steps](https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/setting-up.html)
+
+
 ## Athena Setup

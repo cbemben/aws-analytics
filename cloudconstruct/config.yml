@@ -9,13 +9,13 @@ aws:
   profile: default
 
   s3:
-    bucket: 'health-sh-test-data'
+    bucket: ''
 
   # Elastic Map Reduce cluster config
   emr:
     projectname: fin
-    loguri_prefix: "s3://health-sh-test-data/logs"
-    tmp_folder: "s3://health-sh-test-data/tmp/"
+    loguri_prefix: "s3://"
+    tmp_folder: "s3://tmp"
     releaselabel: emr-5.29.0
 
     cluster_tags:

@@ -77,8 +77,7 @@ def create_cluster(cluster_name: str, min_core: int, max_core: int,
                              ebs_root_volume_size=ebs_root_volume_size,
                              ebs_device_count=ebs_device_count,
                              ebs_device_size_gb=ebs_device_size_gb,
-                             spot_price_usd=spot_price_usd, temporary=temporary,
-                             jupyter=jupyter)
+                             temporary=temporary, jupyter=jupyter)
     log.debug(f"Cluster create spec: {pprint.pformat(spec)}")
     response = _get_client().run_job_flow(**spec)
     return response['JobFlowId']
@@ -142,7 +141,7 @@ def _get_cluster_detail(name: str, min_core: int, max_core: int,
                 },
                 {
                     "InstanceFleetType": "TASK",
-                    "TargetOnDemandCapacity": max_task,
+                    "TargetOnDemandCapacity": 1,
                     "InstanceTypeConfigs": [{"InstanceType": task_instance_type}],
                 },
             ],
@@ -150,7 +149,9 @@ def _get_cluster_detail(name: str, min_core: int, max_core: int,
         },
         'LogUri': AWS_CONFIG['emr']['loguri_prefix'],
         'ReleaseLabel': AWS_CONFIG['emr']['releaselabel'],
-        'Applications': [{'Name': app} for app in AWS_CONFIG['emr']['applications']]
+        'Applications': [{'Name': app} for app in AWS_CONFIG['emr']['applications']],
+        'JobFlowRole': AWS_CONFIG['emr']['jobflowrole'],
+        'ServiceRole': AWS_CONFIG['emr']['servicerole']
     }
 
     return cluster_config

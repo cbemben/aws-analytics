@@ -30,3 +30,5 @@ aws:
 
     applications:
       - Spark
+
+    jobflowrole: 'EMR_EC2_DefaultRole'
